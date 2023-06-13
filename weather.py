@@ -16,6 +16,7 @@ def format_temperature(temp):
     return f"{temp}{DEGREE_SYBMOL}"
 
 
+
 def convert_date(iso_string):
     """Converts and ISO formatted date into a human readable format.
 
@@ -27,6 +28,7 @@ def convert_date(iso_string):
     pass
 
 
+
 def convert_f_to_c(temp_in_farenheit):
     """Converts an temperature from farenheit to celcius.
 
@@ -35,7 +37,7 @@ def convert_f_to_c(temp_in_farenheit):
     Returns:
         A float representing a temperature in degrees celcius, rounded to 1dp.
     """
-    pass
+    pass #if i wrote return 32.2 it will pass the first one, but not the others -- so need to put a code in here to pass them all
 
 
 def calculate_mean(weather_data):
@@ -57,7 +59,11 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
-    pass
+    pass 
+
+# it basically takes one function, csv_file, and whenever we refer to that, the csv_file will be whatever we're passing it in. the test function is to give different values and make sure it's working. we just need to implement the code and functions.
+
+# press cmd and left click when hovering over a function and it will take you to the implementation of the function (use this in the test-files to find where the functions are, as there are a heap of functions)
 
 
 def find_min(weather_data):
