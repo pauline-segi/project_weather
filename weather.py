@@ -1,5 +1,6 @@
 import csv
 from datetime import datetime
+import py_compile
 
 DEGREE_SYBMOL = u"\N{DEGREE SIGN}C"
 
@@ -28,16 +29,24 @@ def convert_date(iso_string):
     pass
 
 
-
 def convert_f_to_c(temp_in_farenheit):
-    """Converts an temperature from farenheit to celcius.
+    """Converts a temperature from farenheit to celcius.
 
     Args:
         temp_in_farenheit: float representing a temperature.
     Returns:
         A float representing a temperature in degrees celcius, rounded to 1dp.
     """
-    pass #if i wrote return 32.2 it will pass the first one, but not the others -- so need to put a code in here to pass them all
+    if isinstance(temp_in_farenheit, str):
+        temp_in_farenheit = float(temp_in_farenheit)
+    deg_c = (temp_in_farenheit - 32) * 5 / 9
+    rounded_deg_c = round(deg_c, 1)
+    return rounded_deg_c
+print(convert_f_to_c)
+pass
+
+#if i wrote return 32.2 it will pass the first one, but not the others -- so need to put a code in here to pass them all
+
 
 
 def calculate_mean(weather_data):
