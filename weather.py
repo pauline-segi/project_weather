@@ -19,14 +19,18 @@ def format_temperature(temp):
 
 
 def convert_date(iso_string):
-    """Converts and ISO formatted date into a human readable format.
+    """Converts an ISO formatted date into a human readable format.
 
     Args:
         iso_string: An ISO date string..
     Returns:
         A date formatted like: Weekday Date Month Year e.g. Tuesday 06 July 2021
     """
-    pass
+    date_time = datetime.fromisoformat(iso_string)
+    new_date = date_time.strftime("%A %d %B %Y")
+    # print(new_date)
+    return new_date
+
 
 
 def convert_f_to_c(temp_in_farenheit):
@@ -40,11 +44,9 @@ def convert_f_to_c(temp_in_farenheit):
     if isinstance(temp_in_farenheit, str):
         temp_in_farenheit = float(temp_in_farenheit)
     deg_c = (temp_in_farenheit - 32) * 5 / 9
-    rounded_deg_c = round(deg_c, 1)
-    print(rounded_deg_c)
-    return rounded_deg_c
-
-#if i wrote return 32.2 it will pass the first one, but not the others -- so need to put a code in here to pass them all
+    round_degrees = round(deg_c, 1)
+    # print(round_degrees)
+    return round_degrees
 
 
 
