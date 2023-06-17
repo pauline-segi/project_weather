@@ -41,9 +41,8 @@ def convert_f_to_c(temp_in_farenheit):
         temp_in_farenheit = float(temp_in_farenheit)
     deg_c = (temp_in_farenheit - 32) * 5 / 9
     rounded_deg_c = round(deg_c, 1)
+    print(rounded_deg_c)
     return rounded_deg_c
-print(convert_f_to_c)
-pass
 
 #if i wrote return 32.2 it will pass the first one, but not the others -- so need to put a code in here to pass them all
 
