@@ -48,7 +48,7 @@ def convert_f_to_c(temp_in_farenheit):
     # print(round_degrees)
     return round_degrees
 
-
+#need to remove the full-stops appearing before the last few dates
 
 def calculate_mean(weather_data):
     """Calculates the mean value from a list of numbers.
