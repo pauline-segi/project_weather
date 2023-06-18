@@ -17,7 +17,6 @@ def format_temperature(temp):
     return f"{temp}{DEGREE_SYBMOL}"
 
 
-
 def convert_date(iso_string):
     """Converts an ISO formatted date into a human readable format.
 
@@ -48,7 +47,6 @@ def convert_f_to_c(temp_in_farenheit):
     # print(round_degrees)
     return round_degrees
 
-#need to remove the full-stops appearing before the last few dates
 
 def calculate_mean(weather_data):
     """Calculates the mean value from a list of numbers.
@@ -58,7 +56,21 @@ def calculate_mean(weather_data):
     Returns:
         A float representing the mean value.
     """
-    pass
+    weather_data = [float(data) for data in weather_data]
+    return sum(weather_data) / len(weather_data)
+
+if __name__ == "__main__":
+    import sys
+    sys.path.append('tests')
+
+    import test_calculate_mean
+
+    temperatures = test_calculate_mean.CalculateMeanTests()
+
+    for data in temperatures:
+        mean = calculate_mean(data)
+        print("Mean value:", mean)
+
 
 
 def load_data_from_csv(csv_file):
