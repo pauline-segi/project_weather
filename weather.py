@@ -96,7 +96,17 @@ def find_min(weather_data):
     Returns:
         The minium value and it's position in the list.
     """
-    pass
+    if not weather_data:
+        return ()
+
+    try:
+        float_data = [float(value) for value in weather_data]
+        min_value = min(float_data)
+        min_index = len(float_data) - 1 - float_data[::-1].index(min_value)
+        # print(min_value)
+        return min_value, min_index
+    except ValueError:
+        return ()
 
 
 def find_max(weather_data):
@@ -107,7 +117,24 @@ def find_max(weather_data):
     Returns:
         The maximum value and it's position in the list.
     """
-    pass
+    if not weather_data:
+        return ()
+
+    max_value = float('-inf')
+    max_index = None
+
+    for i, value in enumerate(weather_data):
+        try:
+            numeric_value = float(value)
+        except ValueError:
+            continue
+        
+        if numeric_value >= max_value:
+            max_value = numeric_value
+            max_index = i
+    print(max_value)
+    return max_value, max_index
+
 
 
 def generate_summary(weather_data):
@@ -118,7 +145,22 @@ def generate_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
+    summary = ""
+    for day_data in weather_data:
+        date_string = day_data[0]
+        temperature_min = float(day_data[1])
+        temperature_max = float(day_data[2])
+
+        date = datetime.fromisoformat(date_string)
+        date_string = date.strftime("%B %d, %Y")
+
+        summary += f"Weather summary for {date_string}:\n"
+        summary += f"Temperature: {temperature_min:.1f}{DEGREE_SYBMOL} - {temperature_max:.1f}{DEGREE_SYBMOL}\n\n"
+
+    return summary.strip()
+
+# THIS CODE IS ERRORING!!
+
 
 
 def generate_daily_summary(weather_data):
@@ -129,4 +171,18 @@ def generate_daily_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    pass
+    summary = ""
+    
+    for day_data in weather_data:
+        date_obj = datetime.fromisoformat(day_data[0])
+        date_str = date_obj.strftime("%A %d %B %Y")
+        min_temp = day_data[1]
+        max_temp = day_data[2]
+        
+        summary += f"Weather summary for {date_str}:\n"
+        summary += f"Temperature range: {min_temp}{DEGREE_SYBMOL} - {max_temp}{DEGREE_SYBMOL}\n\n"
+
+    return summary
+
+
+# THIS CODE IS ERRORING!!
