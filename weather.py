@@ -81,7 +81,11 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
-    pass 
+    
+
+# need to return an empty line as well
+
+# THIS CODE IS ERRORING!!
 
 # it basically takes one function, csv_file, and whenever we refer to that, the csv_file will be whatever we're passing it in. the test function is to give different values and make sure it's working. we just need to implement the code and functions.
 
