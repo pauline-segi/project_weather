@@ -2,7 +2,7 @@ import csv
 from datetime import datetime
 import py_compile
 
-DEGREE_SYBMOL = u"\N{DEGREE SIGN}C"
+DEGREE_SYMBOL = u"\N{DEGREE SIGN}C"
 
 
 def format_temperature(temp):
@@ -14,7 +14,7 @@ def format_temperature(temp):
     Returns:
         A string contain the temperature and "degrees celcius."
     """
-    return f"{temp}{DEGREE_SYBMOL}"
+    return f"{temp}{DEGREE_SYMBOL}"
 
 
 def convert_date(iso_string):
@@ -132,7 +132,7 @@ def find_max(weather_data):
         if numeric_value >= max_value:
             max_value = numeric_value
             max_index = i
-    print(max_value)
+    # print(max_value)
     return max_value, max_index
 
 
@@ -155,8 +155,8 @@ def generate_summary(weather_data):
         date_string = date.strftime("%B %d, %Y")
 
         summary += f"Weather summary for {date_string}:\n"
-        summary += f"Temperature: {temperature_min:.1f}{DEGREE_SYBMOL} - {temperature_max:.1f}{DEGREE_SYBMOL}\n\n"
-
+        summary += f"Temperature: {temperature_min:.1f}{DEGREE_SYMBOL} - {temperature_max:.1f}{DEGREE_SYMBOL}\n\n"
+        print(summary)
     return summary.strip()
 
 # THIS CODE IS ERRORING!!
@@ -171,18 +171,23 @@ def generate_daily_summary(weather_data):
     Returns:
         A string containing the summary information.
     """
-    summary = ""
-    
+    summary = "5 Day Overview\n"
+
     for day_data in weather_data:
         date_obj = datetime.fromisoformat(day_data[0])
         date_str = date_obj.strftime("%A %d %B %Y")
-        min_temp = day_data[1]
-        max_temp = day_data[2]
-        
-        summary += f"Weather summary for {date_str}:\n"
-        summary += f"Temperature range: {min_temp}{DEGREE_SYBMOL} - {max_temp}{DEGREE_SYBMOL}\n\n"
+        min_temp_fahrenheit = float(day_data[1])
+        max_temp_fahrenheit = float(day_data[2])
 
-    return summary
+        # Convert temperatures to Celsius
+        min_temp_celsius = (min_temp_fahrenheit - 32) * 5 / 9
+        max_temp_celsius = (max_temp_fahrenheit - 32) * 5 / 9
+
+        summary += f"---- {date_str} ----\n"
+        summary += "  Minimum Temperature: {:.1f}{}\n".format(min_temp_celsius, DEGREE_SYMBOL)
+        summary += "  Maximum Temperature: {:.1f}{}\n\n".format(max_temp_celsius, DEGREE_SYMBOL)
+
+    return summary.rstrip()
 
 
 # THIS CODE IS ERRORING!!
