@@ -11,7 +11,7 @@ def format_temperature(temp):
 
     Args:
         temp: A string representing a temperature.
-    Returns:
+    Returns: 
         A string contain the temperature and "degrees celcius."
     """
     return f"{temp}{DEGREE_SYMBOL}"
