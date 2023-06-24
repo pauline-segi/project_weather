@@ -81,15 +81,14 @@ def load_data_from_csv(csv_file):
     Returns:
         A list of lists, where each sublist is a (non-empty) line in the csv file.
     """
-    
-
-# need to return an empty line as well
-
-# THIS CODE IS ERRORING!!
-
-# it basically takes one function, csv_file, and whenever we refer to that, the csv_file will be whatever we're passing it in. the test function is to give different values and make sure it's working. we just need to implement the code and functions.
-
-# press cmd and left click when hovering over a function and it will take you to the implementation of the function (use this in the test-files to find where the functions are, as there are a heap of functions)
+    data_list = []
+    with open(csv_file, mode="r") as file:
+        csv_reader = csv.reader(file)
+        next(csv_reader)
+        for row in csv_reader:
+            if row and all(row):
+                data_list.append([row[0],int(row[1]),int(row[2])])
+    return data_list
 
 
 def find_min(weather_data):
@@ -151,16 +150,26 @@ def generate_summary(weather_data):
     """
     summary = ""
     for day_data in weather_data:
+        if not day_data:  
+                continue
+
         date_string = day_data[0]
         temperature_min = float(day_data[1])
         temperature_max = float(day_data[2])
 
+        rounded_min = round(temperature_min, 1)
+        rounded_max = round(temperature_max, 1)
+
+        temperature_min = (temperature_min - 32) * 5 / 9
+        temperature_max = (temperature_max - 32) * 5 / 9
+
         date = datetime.fromisoformat(date_string)
         date_string = date.strftime("%B %d, %Y")
 
-        summary += f"Weather summary for {date_string}:\n"
-        summary += f"Temperature: {temperature_min:.1f}{DEGREE_SYMBOL} - {temperature_max:.1f}{DEGREE_SYMBOL}\n\n"
-        print(summary)
+        summary += f"The lowest temperature will be {rounded_min}{DEGREE_SYMBOL}, and will occur on {date_string}:\n"
+        summary += f"The highest temperature will be {rounded_max}{DEGREE_SYMBOL}, and will occur on {date_string}:\n"
+        summary += f"The average low this week is {rounded_min}{DEGREE_SYMBOL} - {rounded_max}{DEGREE_SYMBOL}\n"
+        summary += f"The average high this week is {rounded_max}{DEGREE_SYMBOL} - {rounded_min}{DEGREE_SYMBOL}\n"
     return summary.strip()
 
 # THIS CODE IS ERRORING!!
